@@ -1,0 +1,29 @@
+ZSH_THEME=essembeh-customized
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+HIST_STAMPS="yyyy-mm-dd"
+
+plugins=($(cat "$HOME/.zsh_plugins"))
+
+# https://github.com/popstas/zsh-command-time
+# If command execution time above min. time, plugins will not output time.
+ZSH_COMMAND_TIME_MIN_SECONDS=3
+# Message to display (set to "" for disable).
+ZSH_COMMAND_TIME_MSG="Execution time: %s sec"
+
+ZSH_ALIAS_FINDER_AUTOMATIC=true
+
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_NO_FUNCTIONS
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+
+[[ -r "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
+
+#this line should go at the bottom of the file
+source $ZSH/oh-my-zsh.sh
