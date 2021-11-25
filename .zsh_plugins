@@ -8,4 +8,7 @@ git
 sudo
 yarn
 yii2_custom
+kubectl
+zsh-autosuggestions
+zsh-syntax-highlighting
 alias-finder
