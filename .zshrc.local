@@ -1,5 +1,7 @@
 ZSH_THEME=essembeh-customized
 
+export PATH="$PATH:$HOME/.local/bin"
+
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
