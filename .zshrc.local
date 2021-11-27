@@ -1,4 +1,4 @@
-ZSH_THEME=essembeh-customized
+ZSH_THEME=clean
 
 export PATH="$PATH:$HOME/.local/bin"
 
