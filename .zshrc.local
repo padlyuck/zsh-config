@@ -2,6 +2,9 @@ ZSH_THEME=essembeh-customized
 
 export PATH="$PATH:$HOME/.local/bin"
 
+# needed for proper work of zsh-autosuggestions
+export TERM=xterm-256color
+
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
@@ -27,5 +30,5 @@ setopt INC_APPEND_HISTORY
 
 [[ -r "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
 
-#this line should go at the bottom of the file
+# this line should go at the bottom of the file
 source $ZSH/oh-my-zsh.sh
