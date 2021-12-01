@@ -1,6 +1,7 @@
 ZSH_THEME=clean
 
-export PATH="$PATH:$HOME/.local/bin"
+export GOPATH=$HOME/.go
+export PATH="$PATH:$HOME/.local/bin:$GOPATH/bin"
 
 # needed for proper work of zsh-autosuggestions
 export TERM=xterm-256color
