@@ -1,4 +1,3 @@
-ansible
 composer
 colorize
 common-aliases
@@ -10,6 +9,7 @@ sudo
 yarn
 yii2_custom
 kubectl
+kubectx
 rsync
 zsh-autosuggestions
 zsh-syntax-highlighting
