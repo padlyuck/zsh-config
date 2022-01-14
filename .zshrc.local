@@ -8,11 +8,17 @@ export PATH="$HOME/.local/opt/brew/sbin:$PATH"
 export PATH="$HOME/.krew/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 
+export ARGOCD_OPTS='--port-forward-namespace argocd --insecure'
+
 # needed for proper work of zsh-autosuggestions
 export TERM=xterm-256color
 
 if [[ -n $(which nano) ]]; then
     export EDITOR=$(which nano)
+fi
+
+if [[ -n $XDG_CURRENT_DESKTOP && -n $(which sublime) ]]; then
+   export EDITOR=$(which sublime)
 fi
 
 # Uncomment the following line to display red dots whilst waiting for completion.
