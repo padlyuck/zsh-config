@@ -73,3 +73,5 @@ bindkey -r '^[^['
 bindkey '^]' forward-word
 bindkey '^[' backward-word
 RPROMPT=""
+KUBE_PS1_SYMBOL_ENABLE=false
+KUBE_PS1_SYMBOL_DEFAULT=""
