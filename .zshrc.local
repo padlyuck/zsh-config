@@ -66,5 +66,9 @@ setopt INC_APPEND_HISTORY
 [[ -r "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
 [[ -r "$HOME/.config/user-dirs.dirs" ]] && source "$HOME/.config/user-dirs.dirs"
 
-# this line should go at the bottom of the file
+# this lines should go at the bottom of the file
 source $ZSH/oh-my-zsh.sh
+PROMPT='$(kube_ps1)'$PROMPT
+bindkey -r '^[^['
+bindkey '^]' forward-word
+bindkey '^[' backward-word

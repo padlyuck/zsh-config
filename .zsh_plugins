@@ -6,6 +6,7 @@ docker-compose
 git
 sudo
 kubectl
+kube-ps1
 rsync
 zsh-autosuggestions
 zsh-syntax-highlighting
