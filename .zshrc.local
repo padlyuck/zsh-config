@@ -68,7 +68,8 @@ setopt INC_APPEND_HISTORY
 
 # this lines should go at the bottom of the file
 source $ZSH/oh-my-zsh.sh
-PROMPT='$(kube_ps1)'$PROMPT
+PROMPT='[%*] $(kube_ps1) '$PROMPT
 bindkey -r '^[^['
 bindkey '^]' forward-word
 bindkey '^[' backward-word
+RPROMPT=""
