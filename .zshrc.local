@@ -14,11 +14,12 @@ export ARGOCD_OPTS='--port-forward-namespace argocd --insecure'
 export TERM=xterm-256color
 
 if [[ -n $(which nano) ]]; then
-    export EDITOR=$(which nano)
+    export EDITOR=nano
+    export KUBE_EDITOR=nano
 fi
 
 if [[ -n $XDG_CURRENT_DESKTOP && -n $(which sublime) ]]; then
-   export EDITOR=$(which sublime)
+   export EDITOR=sublime
 fi
 
 # Uncomment the following line to display red dots whilst waiting for completion.
@@ -63,15 +64,16 @@ setopt HIST_NO_FUNCTIONS
 setopt EXTENDED_HISTORY
 setopt INC_APPEND_HISTORY
 
+git config --global core.editor "nano -w"
+
 [[ -r "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
 [[ -r "$HOME/.config/user-dirs.dirs" ]] && source "$HOME/.config/user-dirs.dirs"
 
 # this lines should go at the bottom of the file
 source $ZSH/oh-my-zsh.sh
-PROMPT='[%*] $(kube_ps1) '$PROMPT
+PROMPT='$(kube_ps1) '"$PROMPT"
 bindkey -r '^[^['
 bindkey '^]' forward-word
 bindkey '^[' backward-word
-RPROMPT=""
 KUBE_PS1_SYMBOL_ENABLE=false
 KUBE_PS1_SYMBOL_DEFAULT=""
