@@ -18,6 +18,16 @@ if [[ -n $(which nano) ]]; then
     export KUBE_EDITOR=nano
 fi
 
+if [[ -n $(which kustomize) ]]; then
+    kustomize completion zsh >| "$ZSH_CACHE_DIR/completions/_kustomize"
+    source "$ZSH_CACHE_DIR/completions/_kustomize"
+fi
+
+if [[ -n $(which helm) ]]; then
+    helm completion zsh >| "$ZSH_CACHE_DIR/completions/_helm"
+    source "$ZSH_CACHE_DIR/completions/_helm"
+fi
+
 if [[ -n $XDG_CURRENT_DESKTOP && -n $(which sublime) ]]; then
    export EDITOR=sublime
 fi
