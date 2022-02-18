@@ -7,6 +7,10 @@ export PATH="$HOME/.local/opt/brew/bin:$PATH"
 export PATH="$HOME/.local/opt/brew/sbin:$PATH"
 export PATH="$HOME/.krew/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
+export JAVA_HOME="/usr/lib/jvm/java-17-oracle"
+
+export COMPOSER_HOME="$HOME/.config/composer"
+export COMPOSER_CACHE_DIR="$HOME/.cache/composer"
 
 export ARGOCD_OPTS='--port-forward-namespace argocd --insecure'
 
@@ -80,6 +84,10 @@ fi
 if [[ -n $(which helm) ]]; then
     helm completion zsh >| "$ZSH_CACHE_DIR/completions/_helm"
     source "$ZSH_CACHE_DIR/completions/_helm"
+fi
+
+if [[ -n $(which vault) ]]; then
+    complete -C /usr/bin/vault vault
 fi
 
 PROMPT='$(kube_ps1) '"$PROMPT"
