@@ -22,12 +22,12 @@ export ARGOCD_OPTS='--port-forward-namespace argocd --insecure'
 # needed for proper work of zsh-autosuggestions
 export TERM=xterm-256color
 
-if [[ -n $(which nano) ]]; then
+if command -v nano > /dev/null 2>&1; then
     export EDITOR=nano
     export KUBE_EDITOR=nano
 fi
 
-if [[ -n $XDG_CURRENT_DESKTOP && -n $(which sublime) ]]; then
+if [[ -n $XDG_CURRENT_DESKTOP && -n $(command -v sublime) ]]; then
    export EDITOR=sublime
 fi
 
@@ -81,17 +81,17 @@ git config --global core.editor "nano -w"
 # this lines should go at the bottom of the file
 source $ZSH/oh-my-zsh.sh
 
-if [[ -n $(which kustomize) ]]; then
+if command -v kustomize > /dev/null 2>&1; then
     kustomize completion zsh >| "$ZSH_CACHE_DIR/completions/_kustomize"
     source "$ZSH_CACHE_DIR/completions/_kustomize"
 fi
 
-if [[ -n $(which helm) ]]; then
+if command -v helm > /dev/null 2>&1; then
     helm completion zsh >| "$ZSH_CACHE_DIR/completions/_helm"
     source "$ZSH_CACHE_DIR/completions/_helm"
 fi
 
-if [[ -n $(which vault) ]]; then
+if command -v vault > /dev/null 2>&1; then
     complete -C /usr/bin/vault vault
 fi
 
