@@ -1,6 +1,6 @@
 ZSH_THEME=clean
 
-source /etc/zsh/zprofile
+[[ -r "/etc/zsh/zprofile" ]] && source /etc/zsh/zprofile
 
 export GOPATH=$HOME/.go
 export PATH="$GOPATH/bin:$PATH"
