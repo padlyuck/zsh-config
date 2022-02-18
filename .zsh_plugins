@@ -4,10 +4,11 @@ common-aliases
 command-time
 docker
 docker-compose
-git
-sudo
-kubectl
 fixed-kube-ps1
+git
+kubectl
+oc
+sudo
 rsync
 zsh-autosuggestions
 zsh-syntax-highlighting
