@@ -24,6 +24,7 @@ export TERM=xterm-256color
 
 if command -v nano > /dev/null 2>&1; then
     export EDITOR=nano
+    export OC_EDITOR=nano
     export KUBE_EDITOR=nano
 fi
 
