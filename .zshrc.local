@@ -2,7 +2,8 @@ ZSH_THEME=clean
 
 [[ -r "/etc/zsh/zprofile" ]] && source /etc/zsh/zprofile
 
-export GOPATH=$HOME/.go
+export KUBECONFIG="$HOME/.kube/config"
+export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/opt/brew/bin:$PATH"
@@ -26,6 +27,7 @@ if command -v nano > /dev/null 2>&1; then
     export EDITOR=nano
     export OC_EDITOR=nano
     export KUBE_EDITOR=nano
+    git config --global core.editor "nano -w"
 fi
 
 if [[ -n $XDG_CURRENT_DESKTOP && -n $(command -v sublime) ]]; then
@@ -73,8 +75,6 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_NO_FUNCTIONS
 setopt EXTENDED_HISTORY
 setopt INC_APPEND_HISTORY
-
-git config --global core.editor "nano -w"
 
 [[ -r "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
 [[ -r "$HOME/.config/user-dirs.dirs" ]] && source "$HOME/.config/user-dirs.dirs"

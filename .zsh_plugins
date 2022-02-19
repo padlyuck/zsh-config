@@ -5,7 +5,7 @@ command-time
 docker
 docker-compose
 firewalld
-fixed-kube-ps1
+kube-ps1
 git
 kubectl
 oc
