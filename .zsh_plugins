@@ -4,6 +4,7 @@ common-aliases
 command-time
 docker
 docker-compose
+firewalld
 fixed-kube-ps1
 git
 kubectl
