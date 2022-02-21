@@ -1,5 +1,6 @@
 ZSH_THEME=clean
 
+[[ -r "$HOME/.zsh_sensitive" ]] && source "$HOME/.zsh_sensitive"
 [[ -r "/etc/zsh/zprofile" ]] && source /etc/zsh/zprofile
 
 export KUBECONFIG="$HOME/.kube/config"
