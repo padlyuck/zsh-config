@@ -1,4 +1,6 @@
 ZSH_THEME=clean
+# disable checking untracked git files to avoid freezing in large repositories
+export DISABLE_UNTRACKED_FILES_DIRTY=true
 
 [[ -r "$HOME/.zsh_sensitive" ]] && source "$HOME/.zsh_sensitive"
 [[ -r "/etc/zsh/zprofile" ]] && source /etc/zsh/zprofile
