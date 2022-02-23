@@ -82,6 +82,15 @@ setopt INC_APPEND_HISTORY
 [[ -r "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
 [[ -r "$HOME/.config/user-dirs.dirs" ]] && source "$HOME/.config/user-dirs.dirs"
 
+
+if command -v tmux > /dev/null 2>&1; then
+    ssh() {
+        tmux rename-window "$*"
+        command ssh "$@"
+        exit
+    }
+fi
+
 # this lines should go at the bottom of the file
 source $ZSH/oh-my-zsh.sh
 
