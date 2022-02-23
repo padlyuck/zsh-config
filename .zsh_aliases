@@ -4,3 +4,5 @@ alias dps='docker ps'
 alias dpsa='docker ps -a'
 alias drm='docker rm $(docker ps -aq)'
 alias drmi='docker rmi $(docker images -aq)'
+
+alias kexplain="kubectl explain --recursive"
