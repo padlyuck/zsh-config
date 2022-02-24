@@ -5,6 +5,7 @@ set -euo pipefail
 PWD=$(pwd)
 INSTALL_DIR="$HOME/.oh-my-zsh"
 CONFIG_FILES=(".zshrc.local" ".tmux.conf" ".zsh_plugins" ".zsh_aliases")
+LOCAL_BIN_PATH="$HOME/.local/bin"
 
 git submodule init
 git submodule update
@@ -33,6 +34,12 @@ done
 for THEME_PATH in "$PWD"/custom/themes/*; do
   THEME_NAME="$(basename "$THEME_PATH")"
   ln -s "$THEME_PATH" "$INSTALL_DIR/custom/themes/$THEME_NAME"
+done
+
+mkdir -p "$LOCAL_BIN_PATH"
+for BINARY_PATH in "$PWD"/bin/*; do
+  BINARY_NAME="$(basename "$BINARY_PATH")"
+  ln -s "$BINARY_PATH" "$LOCAL_BIN_PATH/$BINARY_NAME"
 done
 
 for fileName in "${CONFIG_FILES[@]}"; do

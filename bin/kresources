@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+SERVER=$(kubectl config view --minify | grep "server" | cut -f 2- -d ":" | tr -d " ")
+SECRET_NAME=$(kubectl get secrets | grep "^default" | cut -f1 -d ' ')
+TOKEN=$(kubectl describe secret "$SECRET_NAME" | grep -E '^token' | cut -f2 -d':' | tr -d " ")
+
+APIS=$(curl -s "$SERVER/apis" --header "Authorization: Bearer $TOKEN" --insecure | jq -r '[.groups | .[].name] | join(" ")')
+
+# do core resources first, which are at a separate api location
+api="core"
+echo "CORE"
+echo "==============================="
+curl -s "$SERVER/api/v1" --header "Authorization: Bearer $TOKEN" --insecure | jq -r --arg api "$api" '.resources | .[] | "\(.name): \(.verbs | join(" "))"'
+
+# now do non-core resources
+for api in $APIS; do
+    echo -e "\n$api"
+    echo "==============================="
+    version=$(curl -s "$SERVER/apis/$api" --header "Authorization: Bearer $TOKEN" --insecure | jq -r '.preferredVersion.version')
+    curl -s "$SERVER/apis/$api/$version" --header "Authorization: Bearer $TOKEN" --insecure | jq -r '.resources | .[]? | "\(.name): [\(.verbs | join(", "))]"'
+done
