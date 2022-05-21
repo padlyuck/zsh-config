@@ -8,9 +8,9 @@ firewalld
 kube-ps1
 git
 kubectl
-oc
 sudo
 rsync
 zsh-autosuggestions
 zsh-syntax-highlighting
 alias-finder
+minikube
