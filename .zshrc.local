@@ -101,6 +101,12 @@ if command -v vault > /dev/null 2>&1; then
     complete -C /usr/bin/vault vault
 fi
 
+if command -v tmux > /dev/null 2>&1; then
+    ssh() {
+        tmux new-window -n "$*" ssh "$@"
+    }
+fi
+
 PROMPT='$(kube_ps1) '"$PROMPT"
 bindkey -r '^[^['
 bindkey '^]' forward-word
