@@ -4,7 +4,13 @@ set -euo pipefail
 
 PWD=$(pwd)
 INSTALL_DIR="$HOME/.oh-my-zsh"
-CONFIG_FILES=(".zshrc.local" ".tmux.conf" ".zsh_plugins" ".zsh_aliases")
+CONFIG_FILES=(
+  ".zshrc.local"
+  ".tmux.conf"
+  ".zsh_plugins"
+  ".zsh_aliases"
+  ".config/nano"
+)
 LOCAL_BIN_PATH="$HOME/.local/bin"
 
 git submodule init
@@ -43,6 +49,7 @@ for BINARY_PATH in "$PWD"/bin/*; do
 done
 
 for fileName in "${CONFIG_FILES[@]}"; do
+  mkdir -p $(dirname "$LINK")
   ln -s "$PWD/$fileName" "$HOME/$fileName"
   if [[ -r "$HOME/$fileName.bak" ]]; then
     echo ""
