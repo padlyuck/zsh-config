@@ -34,24 +34,24 @@ fi
 
 for PLUGIN_PATH in "$PWD"/custom/plugins/*; do
   PLUGIN_NAME="$(basename "$PLUGIN_PATH")"
-  ln -s "$PLUGIN_PATH" "$INSTALL_DIR/custom/plugins/$PLUGIN_NAME"
+  ln -sf "$PLUGIN_PATH" "$INSTALL_DIR/custom/plugins/$PLUGIN_NAME"
 done
 
 for THEME_PATH in "$PWD"/custom/themes/*; do
   THEME_NAME="$(basename "$THEME_PATH")"
-  ln -s "$THEME_PATH" "$INSTALL_DIR/custom/themes/$THEME_NAME"
+  ln -sf "$THEME_PATH" "$INSTALL_DIR/custom/themes/$THEME_NAME"
 done
 
 mkdir -p "$LOCAL_BIN_PATH"
 for BINARY_PATH in "$PWD"/bin/*; do
   BINARY_NAME="$(basename "$BINARY_PATH")"
-  ln -s "$BINARY_PATH" "$LOCAL_BIN_PATH/$BINARY_NAME"
+  ln -sf "$BINARY_PATH" "$LOCAL_BIN_PATH/$BINARY_NAME"
 done
 
 for fileName in "${CONFIG_FILES[@]}"; do
   LINK="$HOME/$fileName"
   mkdir -p $(dirname "$LINK")
-  ln -s "$PWD/$fileName" "$LINK"
+  ln -sf "$PWD/$fileName" "$LINK"
   if [[ -r "$HOME/$fileName.bak" ]]; then
     echo ""
     echo "$HOME/$fileName.bak >>>> $HOME/$fileName"

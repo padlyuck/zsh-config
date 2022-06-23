@@ -17,7 +17,7 @@ for TARGET_PATH in "$PWD"/custom/plugins/*; do
   TARGET_NAME="$(basename "$TARGET_PATH")"
   LINK="$INSTALL_DIR/custom/plugins/$TARGET_NAME"
   if [[ ! -r $LINK ]]; then
-    ln -s "$TARGET_PATH" "$LINK"
+    ln -sf "$TARGET_PATH" "$LINK"
   fi
 done
 
@@ -25,7 +25,7 @@ for TARGET_PATH in "$PWD"/custom/themes/*; do
   TARGET_NAME="$(basename "$TARGET_PATH")"
   LINK="$INSTALL_DIR/custom/themes/$TARGET_NAME"
   if [[ ! -r $LINK ]]; then
-    ln -s "$TARGET_PATH" "$LINK"
+    ln -sf "$TARGET_PATH" "$LINK"
   fi
 done
 
@@ -34,7 +34,7 @@ for TARGET_PATH in "$PWD"/bin/*; do
   TARGET_NAME="$(basename "$TARGET_PATH")"
   LINK="$LOCAL_BIN_PATH/$TARGET_NAME"
   if [[ ! -r $LINK ]]; then
-    ln -s "$TARGET_PATH" "$LINK"
+    ln -sf "$TARGET_PATH" "$LINK"
   fi
 done
 
