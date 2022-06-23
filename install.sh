@@ -49,8 +49,9 @@ for BINARY_PATH in "$PWD"/bin/*; do
 done
 
 for fileName in "${CONFIG_FILES[@]}"; do
+  LINK="$HOME/$fileName"
   mkdir -p $(dirname "$LINK")
-  ln -s "$PWD/$fileName" "$HOME/$fileName"
+  ln -s "$PWD/$fileName" "$LINK"
   if [[ -r "$HOME/$fileName.bak" ]]; then
     echo ""
     echo "$HOME/$fileName.bak >>>> $HOME/$fileName"
