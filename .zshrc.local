@@ -26,7 +26,7 @@ export PATH="/var/lib/rancher/rke2/bin:$PATH"
 export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
 export COMPOSER_CACHE_DIR="$HOME/.cache/composer"
 
-export ARGOCD_OPTS='--port-forward-namespace argocd --insecure'
+export ARGOCD_OPTS='--grpc-web'
 
 # needed for proper work of zsh-autosuggestions
 export TERM=xterm-256color
