@@ -1,10 +1,9 @@
+aws
 colorize
-composer
 common-aliases
 command-time
 docker
 docker-compose
-firewalld
 kube-ps1
 git
 kubectl
@@ -13,4 +12,3 @@ rsync
 zsh-autosuggestions
 zsh-syntax-highlighting
 alias-finder
-minikube
