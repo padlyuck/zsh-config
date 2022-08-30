@@ -109,7 +109,8 @@ if command -v tmux > /dev/null 2>&1; then
     }
 fi
 
-PROMPT='$(kube_ps1) '"$PROMPT"
+#PROMPT='$(kube_ps1) '"$PROMPT"
+PROMPT='$(kube_ps1) %2~ »%b '
 bindkey -r '^[^['
 bindkey '^]' forward-word
 bindkey '^[' backward-word
