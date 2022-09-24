@@ -12,15 +12,17 @@ fi
 [[ -r "$HOME/.zsh_sensitive" ]] && source "$HOME/.zsh_sensitive"
 [[ -r "/etc/zsh/zprofile" ]] && source /etc/zsh/zprofile
 
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+#export GOPATH=$HOME/go
+#export GOBIN=$GOPATH/bin
+#export PATH=${PATH}:$GOBIN:$GOROOT/bin
+
 export KUBECONFIG="$HOME/.kube/config"
-export GOPATH="$HOME/.go"
-export PATH="$GOPATH/bin:$PATH"
+
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/opt/brew/bin:$PATH"
 export PATH="$HOME/.local/opt/brew/sbin:$PATH"
-export PATH="$HOME/.local/opt/istio-1.13.1/bin:$PATH"
 export PATH="$HOME/.krew/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
 export PATH="/var/lib/rancher/rke2/bin:$PATH"
 
 export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
@@ -88,6 +90,12 @@ if command -v kustomize > /dev/null 2>&1; then
     source "$ZSH_CACHE_DIR/completions/_kustomize"
 fi
 
+if command -v cobra-cli > /dev/null 2>&1; then
+  cobra-cli completion zsh >| "$ZSH_CACHE_DIR/completions/_cobra-cli"
+  source "$ZSH_CACHE_DIR/completions/_cobra-cli"
+  compdef _cobra-cli cobra  
+fi
+
 if command -v helm > /dev/null 2>&1; then
     helm completion zsh >| "$ZSH_CACHE_DIR/completions/_helm"
     source "$ZSH_CACHE_DIR/completions/_helm"
@@ -114,5 +122,9 @@ PROMPT='$(kube_ps1) %2~ »%b '
 bindkey -r '^[^['
 bindkey '^]' forward-word
 bindkey '^[' backward-word
+bindkey -s '^[^K' '^Q kubectl-ctx^M' # CTRL+ALT+K kubectl-ctx
+bindkey -s '^[^N' '^Q kubectl-ns^M'  # CTRL+ALT+N kubectl-ns
 KUBE_PS1_SYMBOL_ENABLE=false
 KUBE_PS1_SYMBOL_DEFAULT=""
+
+zstyle ':autocomplete:*' default-context history-incremental-search-backward
