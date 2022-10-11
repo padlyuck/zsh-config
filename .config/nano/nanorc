@@ -14,4 +14,5 @@ set tabsize 2
 # Convert each typed tab to spaces -- to the number of spaces that a tab at that position would take up.
 set tabstospaces
 
-include /usr/share/nano/*.nanorc
+#include schemes from https://github.com/scopatz/nanorc
+include ~/.config/nano/schemes/*.nanorc
