@@ -1,0 +1,79 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+clear
+
+# -E      - enable support of anonymous(unnamed) parameters
+# -D      - fix anonymous(unnamed) parameters access
+# -A opts - parameters parsed into $opts variable. Access to value with $opts[--current] or $opts[-c](dash added)
+zparseopts -D -E -A opts \
+  -current=CURRENT_VERSION_ONLY \
+  c=CURRENT_VERSION_ONLY
+
+ROOT_PATH="${1:-./charts}"
+ROOT_PATH=$(echo "${ROOT_PATH}"| sed -E 's#/$##g')
+BUILD_PATH="./build"
+CHART_PATH=$(find "$ROOT_PATH" -mindepth 1 -maxdepth 1 -type d \
+  -not -path "$BUILD_PATH" \
+  -and \
+  -not -path "$ROOT_PATH/.git" \
+  -and \
+  -not -path "$ROOT_PATH/.idea" \
+  | fzf)
+BRANCH=$(find "$CHART_PATH" -mindepth 1 -maxdepth 1 -type f -name "values-*.yaml" |\
+  sed -E "s/.*values-(.*)\.yaml/\\1/g" |\
+   fzf
+)
+APP_NAME=$(basename "$CHART_PATH" | sed -E 's#[^a-zA-Z01-9]#-#g' | sed -E 's#(^-|-$)##g')
+STASH_NAME="$(date +%F_%T)-chart-test"
+VALUES_FILE="$CHART_PATH/values-$BRANCH.yaml"
+TEST_NAMESPACE="test-namespace"
+
+if [[ -z "${CURRENT_VERSION_ONLY}" ]]; then
+  if [[ ! $(git status --porcelain) ]]; then
+    echo "Nothing to test. Exiting."
+    exit 0
+  fi
+fi
+
+RESULT_BEFORE="$BUILD_PATH/result-$APP_NAME-$BRANCH-before.yaml"
+RESULT_AFTER="$BUILD_PATH/result-$APP_NAME-$BRANCH-after.yaml"
+
+if [[ -z "${CURRENT_VERSION_ONLY}" ]]; then
+  git stash save "$STASH_NAME" --quiet
+  helm dep build "$CHART_PATH/" --skip-refresh
+  helm template \
+    "$APP_NAME" \
+    "$CHART_PATH/" \
+    -n "$TEST_NAMESPACE" \
+    -f "$VALUES_FILE" \
+    --set global.overlay="$BRANCH" \
+    > "$RESULT_BEFORE"
+
+  git stash pop "stash@{0}" --quiet
+fi
+
+helm dep build "$CHART_PATH/" --skip-refresh
+helm template \
+  "$APP_NAME" \
+  "$CHART_PATH/" \
+  -n "$TEST_NAMESPACE" \
+  -f "$VALUES_FILE" \
+  --set global.overlay="$BRANCH" \
+  > "$RESULT_AFTER"
+
+echo ""
+
+if [[ -z "${CURRENT_VERSION_ONLY}" ]]; then
+  yq -i -P 'sort_keys(..)' "$RESULT_BEFORE"
+  yq -i -P 'sort_keys(..)' "$RESULT_AFTER"
+
+  diff -s -C 3 --color=always "$RESULT_BEFORE" "$RESULT_AFTER" || true
+
+  cat <<EOF
+
+  $0 $CHART_PATH $BRANCH
+
+EOF
+fi
