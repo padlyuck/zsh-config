@@ -7,3 +7,6 @@
 [submodule "custom/plugins/command-time"]
 	path = custom/plugins/command-time
 	url = https://github.com/popstas/zsh-command-time.git
+[submodule ".config/nano/schemes"]
+	path = .config/nano/schemes
+	url = git@github.com:scopatz/nanorc.git
