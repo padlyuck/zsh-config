@@ -30,9 +30,6 @@ export COMPOSER_CACHE_DIR="$HOME/.cache/composer"
 
 export ARGOCD_OPTS='--grpc-web'
 
-# needed for proper work of zsh-autosuggestions
-#export TERM=screen-256color
-
 if command -v nano > /dev/null 2>&1; then
     export EDITOR=nano
     export OC_EDITOR=nano

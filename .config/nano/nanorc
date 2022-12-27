@@ -16,3 +16,4 @@ set tabstospaces
 
 #include schemes from https://github.com/scopatz/nanorc
 include ~/.config/nano/schemes/*.nanorc
+include ~/.config/nano/custom-schemes/*.nanorc
