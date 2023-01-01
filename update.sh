@@ -9,7 +9,12 @@ CONFIG_FILES=(
   ".tmux.conf"
   ".zsh_plugins"
   ".zsh_aliases"
-  ".config/nano/nanorc"
+  ".config/aria2"
+  ".config/k9s"
+  ".config/nano"
+  ".config/regolith2"
+  ".config/youtube-dl"
+  ".config/user-dirs.dirs"
 )
 LOCAL_BIN_PATH="$HOME/.local/bin"
 

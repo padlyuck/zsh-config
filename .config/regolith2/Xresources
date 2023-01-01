@@ -1,0 +1,12 @@
+i3xrocks.date.format2: "%A %d.%m.%Y %H:%M"
+i3-wm.client.focused.color.child_border: #FF0000
+
+Xft.dpi: 141
+
+!regolith.look.path: /usr/share/regolith-look/ayu-dark
+regolith.look.path: /usr/share/regolith-look/default
+#gnome.terminal.color0: #0B0E14
+
+i3-wm.workspace.01.name:	1:<span></span>1 <span foreground='#3584E4'> Web</span><span> </span>
+i3-wm.workspace.18.name:	18:<span></span>18 <span foreground='#986A44'> FBReader</span><span> </span>
+i3-wm.workspace.19.name:	19:<span></span>19 <span foreground='#3584E4'> Chat</span><span> </span>
