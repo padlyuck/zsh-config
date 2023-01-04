@@ -7,7 +7,9 @@ Xft.dpi: 141
 regolith.look.path: /usr/share/regolith-look/default
 #gnome.terminal.color0: #0B0E14
 
-i3-wm.workspace.01.name: 1:<span></span>1 <span foreground='#3584E4'> Web</span><span> </span>
-i3-wm.workspace.17.name: 17:<span></span>17 <span foreground="#9141AC"> FBReader</span><span> </span>
-i3-wm.workspace.18.name: 18:<span></span>18 <span foreground='#986A44'> Telegram</span><span> </span>
-i3-wm.workspace.19.name: 19:<span></span>19 <span foreground='#3584E4'> Teams</span><span> </span>
+i3-wm.workspace.01.name: 1:<span></span>1 <span foreground='#3584E4'></span><span> </span>
+i3-wm.workspace.17.name: 17:<span></span>17 <span foreground="#9141AC"></span><span> </span>
+i3-wm.workspace.18.name: 18:<span></span>18 <span foreground='#986A44'></span><span> </span>
+i3-wm.workspace.19.name: 19:<span></span>19 <span foreground='#3584E4'></span><span> </span>
+
+exec --no-startup-id python3 $HOME/.config/regolith2/i3/i3-swallow.py
