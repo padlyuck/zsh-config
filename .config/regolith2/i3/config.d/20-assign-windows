@@ -1,5 +1,0 @@
-assign [class="Opera"]                     number $ws1
-assign [class="FBReader"]                  number $ws17
-assign [class="Telegram"]                  number $ws18
-assign [class="microsoft teams - preview"] number $ws19
-assign [class="Microsoft Teams - Preview"] number $ws19

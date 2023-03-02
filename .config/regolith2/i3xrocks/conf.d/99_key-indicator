@@ -1,6 +1,0 @@
-# Keyboard layout
-#
-# Displays current keyboard layout.
-[key-indicator]
-command=$HOME/.config/regolith2/i3xrocks/scripts/$BLOCK_NAME
-interval=1

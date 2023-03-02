@@ -1,6 +1,0 @@
-# Rofication
-#
-# Displays notification count
-[rofication]
-command=$HOME/.config/regolith2/i3xrocks/scripts/$BLOCK_NAME
-interval=5
