@@ -8,6 +8,7 @@ k9s:
   readOnly: false
   noExitOnCtrlC: false
   noIcons: false
+  skipLatestRevCheck: false
   logger:
     tail: 100
     buffer: 5000
@@ -15,12 +16,55 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: eclients-prod
-  currentCluster: eclients-prod
+  currentContext: anvilar-dev
+  currentCluster: anvilar-dev
   clusters:
-    anvilar-stage:
+    anvilar-dev:
+      namespace:
+        active: anvilar
+        lockFavorites: false
+        favorites:
+        - anvilar
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        labels: {}
+      portForwardAddress: localhost
+    anvilar-prod:
       namespace:
         active: all
+        lockFavorites: false
+        favorites:
+        - all
+        - anvilar
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        labels: {}
+      portForwardAddress: localhost
+    anvilar-stage:
+      namespace:
+        active: anvilar
         lockFavorites: false
         favorites:
         - all
@@ -28,7 +72,7 @@ k9s:
         - anvilar
         - default
       view:
-        active: pod
+        active: cm
       featureGates:
         nodeShell: false
       shellPod:
@@ -39,17 +83,18 @@ k9s:
         limits:
           cpu: 100m
           memory: 100Mi
+        labels: {}
       portForwardAddress: localhost
     eclients-prod:
       namespace:
-        active: eclients-prod
+        active: all
         lockFavorites: false
         favorites:
         - eclients-prod
         - monitoring
         - default
       view:
-        active: pods
+        active: node
       featureGates:
         nodeShell: false
       shellPod:
@@ -60,6 +105,28 @@ k9s:
         limits:
           cpu: 100m
           memory: 100Mi
+        labels: {}
+      portForwardAddress: localhost
+    fdmu-dev:
+      namespace:
+        active: fdmu-stage
+        lockFavorites: false
+        favorites:
+        - fdmu-stage
+        - default
+      view:
+        active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        labels: {}
       portForwardAddress: localhost
   thresholds:
     cpu:
