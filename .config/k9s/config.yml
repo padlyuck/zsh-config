@@ -16,8 +16,8 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: anvilar-dev
-  currentCluster: anvilar-dev
+  currentContext: eclients-prod
+  currentCluster: eclients-prod
   clusters:
     anvilar-dev:
       namespace:
@@ -27,7 +27,7 @@ k9s:
         - anvilar
         - default
       view:
-        active: po
+        active: pod
       featureGates:
         nodeShell: false
       shellPod:
@@ -49,7 +49,7 @@ k9s:
         - anvilar
         - default
       view:
-        active: po
+        active: pod
       featureGates:
         nodeShell: false
       shellPod:
@@ -64,7 +64,7 @@ k9s:
       portForwardAddress: localhost
     anvilar-stage:
       namespace:
-        active: anvilar
+        active: all
         lockFavorites: false
         favorites:
         - all
@@ -72,7 +72,30 @@ k9s:
         - anvilar
         - default
       view:
-        active: cm
+        active: pods
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        labels: {}
+      portForwardAddress: localhost
+    eclients-dev:
+      namespace:
+        active: eclients-stage
+        lockFavorites: false
+        favorites:
+        - eclients-stage
+        - eclients-dev
+        - kube-system
+        - default
+      view:
+        active: pod
       featureGates:
         nodeShell: false
       shellPod:
@@ -87,14 +110,16 @@ k9s:
       portForwardAddress: localhost
     eclients-prod:
       namespace:
-        active: all
+        active: beyond-beyondprod
         lockFavorites: false
         favorites:
+        - beyond-beyondprod
+        - kube-system
         - eclients-prod
         - monitoring
         - default
       view:
-        active: node
+        active: pod
       featureGates:
         nodeShell: false
       shellPod:
