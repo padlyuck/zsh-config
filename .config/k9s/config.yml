@@ -16,8 +16,8 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: eclients-prod
-  currentCluster: eclients-prod
+  currentContext: anvilar-prod
+  currentCluster: anvilar-prod
   clusters:
     anvilar-dev:
       namespace:
@@ -42,14 +42,15 @@ k9s:
       portForwardAddress: localhost
     anvilar-prod:
       namespace:
-        active: all
+        active: anvilar
         lockFavorites: false
         favorites:
+        - argocd
         - all
         - anvilar
         - default
       view:
-        active: pod
+        active: pods
       featureGates:
         nodeShell: false
       shellPod:
