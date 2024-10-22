@@ -10,3 +10,6 @@
 [submodule ".config/nano/schemes"]
 	path = .config/nano/schemes
 	url = https://github.com/scopatz/nanorc.git
+[submodule "custom/plugins/zsh-completions"]
+	path = custom/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git

@@ -16,18 +16,19 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: anvilar-prod
-  currentCluster: anvilar-prod
+  currentContext: eclients-prod
+  currentCluster: eclients-prod
   clusters:
     anvilar-dev:
       namespace:
         active: anvilar
         lockFavorites: false
         favorites:
+        - gitlab
         - anvilar
         - default
       view:
-        active: pod
+        active: context
       featureGates:
         nodeShell: false
       shellPod:
@@ -50,7 +51,7 @@ k9s:
         - anvilar
         - default
       view:
-        active: pods
+        active: ns
       featureGates:
         nodeShell: false
       shellPod:
@@ -88,15 +89,20 @@ k9s:
       portForwardAddress: localhost
     eclients-dev:
       namespace:
-        active: eclients-stage
+        active: gitlab-runner
         lockFavorites: false
         favorites:
+        - gitlab-runner
+        - argocd
+        - cattle-dashboards
+        - cattle-impersonation-system
+        - monitoring
+        - external-secrets
         - eclients-stage
         - eclients-dev
         - kube-system
-        - default
       view:
-        active: pod
+        active: ns
       featureGates:
         nodeShell: false
       shellPod:
@@ -111,7 +117,7 @@ k9s:
       portForwardAddress: localhost
     eclients-prod:
       namespace:
-        active: beyond-beyondprod
+        active: monitoring
         lockFavorites: false
         favorites:
         - beyond-beyondprod
@@ -120,7 +126,7 @@ k9s:
         - monitoring
         - default
       view:
-        active: pod
+        active: pods
       featureGates:
         nodeShell: false
       shellPod:
@@ -135,13 +141,35 @@ k9s:
       portForwardAddress: localhost
     fdmu-dev:
       namespace:
-        active: fdmu-stage
+        active: kube-system
         lockFavorites: false
         favorites:
+        - kube-system
         - fdmu-stage
         - default
       view:
         active: po
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.35.0
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+        labels: {}
+      portForwardAddress: localhost
+    rancher:
+      namespace:
+        active: argocd
+        lockFavorites: false
+        favorites:
+        - argocd
+        - default
+      view:
+        active: node
       featureGates:
         nodeShell: false
       shellPod:

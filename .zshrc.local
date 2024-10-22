@@ -113,7 +113,7 @@ fi
 
 if command -v tmux > /dev/null 2>&1; then
     ssh() {
-        if [[ -v TMUX ]]; then
+        if [ $# -lt 2 ] && [ -v TMUX ]; then
           tmux new-window -n "$*" /usr/bin/ssh "$@"
         else
           /usr/bin/ssh "$@"

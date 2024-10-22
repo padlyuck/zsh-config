@@ -25,7 +25,7 @@ BRANCH=$(find "$CHART_PATH" -mindepth 1 -maxdepth 1 -name "values-*.yaml" -type 
   sed -E "s/.*values-(.*)\.yaml/\\1/g" |\
    fzf
 )
-APP_NAME=$(basename "$CHART_PATH" | sed -E 's#[^a-zA-Z01-9]#-#g' | sed -E 's#(^-|-$)##g')
+APP_NAME=$(echo "$CHART_PATH" | sed -E 's#[^a-zA-Z01-9]#-#g' | sed -E 's#(^-+|-+$)##g')
 STASH_NAME="$(date +%F_%T)-chart-test"
 VALUES_FILE="$CHART_PATH/values-$BRANCH.yaml"
 TEST_NAMESPACE="test-namespace"
@@ -51,6 +51,7 @@ if [[ -z "${CURRENT_VERSION_ONLY}" ]]; then
     --set global.overlay="$BRANCH" \
     > "$RESULT_BEFORE"
 
+  yq -i -P 'sort_keys(..)' "$RESULT_BEFORE"
   git stash pop "stash@{0}" --quiet
 fi
 
@@ -64,16 +65,11 @@ helm template \
   > "$RESULT_AFTER"
 
 echo ""
+yq -i -P 'sort_keys(..)' "$RESULT_AFTER"
 
 if [[ -z "${CURRENT_VERSION_ONLY}" ]]; then
-  yq -i -P 'sort_keys(..)' "$RESULT_BEFORE"
-  yq -i -P 'sort_keys(..)' "$RESULT_AFTER"
-
   diff -s -C 3 --color=always "$RESULT_BEFORE" "$RESULT_AFTER" || true
-
   cat <<EOF
-
   $0 $CHART_PATH $BRANCH
-
 EOF
 fi
