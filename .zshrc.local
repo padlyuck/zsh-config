@@ -6,7 +6,7 @@ export UID=$(id -u)
 export GID=$(id -g)
 
 if [[ -z $XDG_CONFIG_HOME ]]; then
-   export XDG_CONFIG_HOME="$HOME/.config"
+  export XDG_CONFIG_HOME="$HOME/.config"
 fi
 
 [[ -r "$HOME/.zsh_aliases" ]] && source "$HOME/.zsh_aliases"
@@ -34,10 +34,10 @@ export COMPOSER_CACHE_DIR="$HOME/.cache/composer"
 export ARGOCD_OPTS='--grpc-web'
 
 if command -v nano > /dev/null 2>&1; then
-    export EDITOR=nano
-    export OC_EDITOR=nano
-    export KUBE_EDITOR=nano
-    git config --global core.editor "nano -w"
+  export EDITOR=nano
+  export OC_EDITOR=nano
+  export KUBE_EDITOR=nano
+  git config --global core.editor "nano -w"
 fi
 
 # Uncomment the following line to display red dots whilst waiting for completion.
@@ -57,21 +57,21 @@ ZSH_ALIAS_FINDER_AUTOMATIC=true
 
 #autosuggestion plugin configuration
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
-    end-of-line
-    vi-forward-char
-    vi-end-of-line
-    vi-add-eol
+  end-of-line
+  vi-forward-char
+  vi-end-of-line
+  vi-add-eol
 )
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
-    forward-char
-    forward-word
-    emacs-forward-word
-    vi-forward-word
-    vi-forward-word-end
-    vi-forward-blank-word
-    vi-forward-blank-word-end
-    vi-find-next-char
-    vi-find-next-char-skip
+  forward-char
+  forward-word
+  emacs-forward-word
+  vi-forward-word
+  vi-forward-word-end
+  vi-forward-blank-word
+  vi-forward-blank-word-end
+  vi-find-next-char
+  vi-find-next-char-skip
 )
 
 setopt HIST_IGNORE_ALL_DUPS
@@ -86,8 +86,8 @@ setopt INC_APPEND_HISTORY
 source $ZSH/oh-my-zsh.sh
 
 if command -v kustomize > /dev/null 2>&1; then
-    kustomize completion zsh >| "$ZSH_CACHE_DIR/completions/_kustomize"
-    source "$ZSH_CACHE_DIR/completions/_kustomize"
+  kustomize completion zsh >| "$ZSH_CACHE_DIR/completions/_kustomize"
+  source "$ZSH_CACHE_DIR/completions/_kustomize"
 fi
 
 if command -v cobra-cli > /dev/null 2>&1; then
@@ -97,28 +97,27 @@ if command -v cobra-cli > /dev/null 2>&1; then
 fi
 
 if command -v helm > /dev/null 2>&1; then
-    helm completion zsh >| "$ZSH_CACHE_DIR/completions/_helm"
-    source "$ZSH_CACHE_DIR/completions/_helm"
+  helm completion zsh >| "$ZSH_CACHE_DIR/completions/_helm"
+  source "$ZSH_CACHE_DIR/completions/_helm"
+fi
+
+if command -v terraform > /dev/null 2>&1; then
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C terraform terraform
 fi
 
 if command -v vault > /dev/null 2>&1; then
-    complete -C /usr/bin/vault vault
-fi
-
-if command -v eksctl > /dev/null 2>&1; then
-    eksctl completion zsh >| "$ZSH_CACHE_DIR/completions/_eksctl"
-    source "$ZSH_CACHE_DIR/completions/_eksctl"
-    compdef _eksctl eksctl
+  complete -C /usr/bin/vault vault
 fi
 
 if command -v tmux > /dev/null 2>&1; then
-    ssh() {
-        if [ $# -lt 2 ] && [ -v TMUX ]; then
-          tmux new-window -n "$*" /usr/bin/ssh "$@"
-        else
-          /usr/bin/ssh "$@"
-        fi
-    }
+  ssh() {
+    if [ $# -lt 2 ] && [ -v TMUX ]; then
+      tmux new-window -n "$*" /usr/bin/ssh "$@"
+    else
+      /usr/bin/ssh "$@"
+    fi
+  }
 fi
 
 #PROMPT='$(kube_ps1) '"$PROMPT"

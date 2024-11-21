@@ -12,6 +12,7 @@ kubectl
 minikube
 rsync
 sudo
+terraform
 zsh-autosuggestions
 zsh-syntax-highlighting
 zsh-completions

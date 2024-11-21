@@ -16,139 +16,18 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: eclients-prod
-  currentCluster: eclients-prod
+  currentContext: qsgames-dev
+  currentCluster: qsgames-dev
   clusters:
-    anvilar-dev:
-      namespace:
-        active: anvilar
-        lockFavorites: false
-        favorites:
-        - gitlab
-        - anvilar
-        - default
-      view:
-        active: context
-      featureGates:
-        nodeShell: false
-      shellPod:
-        image: busybox:1.35.0
-        command: []
-        args: []
-        namespace: default
-        limits:
-          cpu: 100m
-          memory: 100Mi
-        labels: {}
-      portForwardAddress: localhost
-    anvilar-prod:
-      namespace:
-        active: anvilar
-        lockFavorites: false
-        favorites:
-        - argocd
-        - all
-        - anvilar
-        - default
-      view:
-        active: ns
-      featureGates:
-        nodeShell: false
-      shellPod:
-        image: busybox:1.35.0
-        command: []
-        args: []
-        namespace: default
-        limits:
-          cpu: 100m
-          memory: 100Mi
-        labels: {}
-      portForwardAddress: localhost
-    anvilar-stage:
-      namespace:
-        active: all
-        lockFavorites: false
-        favorites:
-        - all
-        - kube-system
-        - anvilar
-        - default
-      view:
-        active: pods
-      featureGates:
-        nodeShell: false
-      shellPod:
-        image: busybox:1.35.0
-        command: []
-        args: []
-        namespace: default
-        limits:
-          cpu: 100m
-          memory: 100Mi
-        labels: {}
-      portForwardAddress: localhost
     eclients-dev:
-      namespace:
-        active: gitlab-runner
-        lockFavorites: false
-        favorites:
-        - gitlab-runner
-        - argocd
-        - cattle-dashboards
-        - cattle-impersonation-system
-        - monitoring
-        - external-secrets
-        - eclients-stage
-        - eclients-dev
-        - kube-system
-      view:
-        active: ns
-      featureGates:
-        nodeShell: false
-      shellPod:
-        image: busybox:1.35.0
-        command: []
-        args: []
-        namespace: default
-        limits:
-          cpu: 100m
-          memory: 100Mi
-        labels: {}
-      portForwardAddress: localhost
-    eclients-prod:
-      namespace:
-        active: monitoring
-        lockFavorites: false
-        favorites:
-        - beyond-beyondprod
-        - kube-system
-        - eclients-prod
-        - monitoring
-        - default
-      view:
-        active: pods
-      featureGates:
-        nodeShell: false
-      shellPod:
-        image: busybox:1.35.0
-        command: []
-        args: []
-        namespace: default
-        limits:
-          cpu: 100m
-          memory: 100Mi
-        labels: {}
-      portForwardAddress: localhost
-    fdmu-dev:
       namespace:
         active: kube-system
         lockFavorites: false
         favorites:
         - kube-system
-        - fdmu-stage
         - default
       view:
-        active: po
+        active: "no"
       featureGates:
         nodeShell: false
       shellPod:
@@ -161,15 +40,14 @@ k9s:
           memory: 100Mi
         labels: {}
       portForwardAddress: localhost
-    rancher:
+    qsgames-dev:
       namespace:
-        active: argocd
+        active: all
         lockFavorites: false
         favorites:
-        - argocd
         - default
       view:
-        active: node
+        active: "no"
       featureGates:
         nodeShell: false
       shellPod:
